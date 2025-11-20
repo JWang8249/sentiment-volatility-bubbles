@@ -1,0 +1,18 @@
+boto3
+pandas
+numpy
+requests
+tqdm
+yfinance
+pyarrow
+python-dateutil
+
+# Machine Learning
+scikit-learn
+xgboost
+
+# Optional for local ETL / Glue simulation
+pyspark
+
+# Optional (safe to keep)
+fastparquet

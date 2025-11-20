@@ -1,0 +1,48 @@
+project_name: gdelt-tech-bubble-analysis
+aws:
+  region: eu-west-1
+  s3_bucket: gdelt-thesis-jingyi
+
+paths:
+  raw_prefix: raw/gdelt/
+  processed_prefix: processed/gdelt_daily/
+  sample_prefix: sample/
+
+gdelt:
+  mode: gdelt2   # gdelt1 or gdelt2
+  download_interval_minutes: 15
+  tech_companies:
+    - nvidia
+    - amd
+    - intel
+    - tsmc
+    - microsoft
+    - meta
+    - amazon
+    - apple
+    - tesla
+    - google
+    - alphabet
+
+glue:
+  job_name: gdelt_daily_etl
+  iam_role: AWSGlueServiceRoleDefault
+  temp_path: s3://gdelt-thesis-jingyi/glue_temp/
+
+athena:
+  database: gdelt_db
+  table_daily: gdelt_daily_parquet
+  output_location: s3://gdelt-thesis-jingyi/athena_query_results/
+
+modeling:
+  target_stocks:
+    - NVDA
+    - AMD
+    - MSFT
+    - AMZN
+  features:
+    - tone_mean
+    - goldstein_mean
+    - news_volume
+    - event_count
+    - extreme_negative
