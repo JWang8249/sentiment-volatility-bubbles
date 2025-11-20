@@ -77,6 +77,14 @@ Daily features include:
 
 ---
 
+## EC2 Ingestion Layer
+A small EC2 instance acts as the ingestion layer for GDELT 2.0.  
+It runs a cron-based Python script (`gdelt_download.py`) every 15 minutes:
+
+    EC2 → download GDELT → validate → upload to S3 (raw/gdelt/)
+
+This keeps the S3 bucket continuously updated with real-time global-event data.
+
 ## 4. Usage (Prototype Stage)
 
 1. Install dependencies  
